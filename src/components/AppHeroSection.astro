@@ -1,14 +1,16 @@
 ---
 import AppHeader from "@/components/AppHeader.astro";
+const mobileBg = `url(${import.meta.env.BASE_URL}images/mobile/image-hero.jpg)`;
+const desktopBg = `url(${import.meta.env.BASE_URL}images/desktop/image-hero.jpg)`;
 ---
 
 <section
-  class="relative flex h-[650px] flex-col gap-40 bg-[url(/images/mobile/image-hero.jpg)] bg-cover bg-no-repeat px-6 py-10 md:gap-32 md:bg-[url(/images/desktop/image-hero.jpg)] lg:px-20 lg:py-12 xl:px-40 xl:py-16"
+  class="responsive-bg relative flex h-162.5 flex-col gap-40 bg-cover bg-no-repeat px-6 py-10 md:gap-32 lg:px-20 lg:py-12 xl:px-40 xl:py-16"
   aria-labelledby="hero-heading"
 >
   <AppHeader />
   <div
-    class="z-1 max-w-[400px] border-2 border-theme-white px-6 pt-6 pb-4 lg:px-9 lg:pt-9 lg:pb-6 xl:max-w-[660px]"
+    class="z-1 max-w-100 border-2 border-theme-white px-6 pt-6 pb-4 lg:px-9 lg:pt-9 lg:pb-6 xl:max-w-165"
   >
     <h1
       id="hero-heading"
@@ -19,3 +21,15 @@ import AppHeader from "@/components/AppHeader.astro";
   </div>
   <div class="absolute inset-0 z-0 bg-theme-black/50" aria-hidden="true"></div>
 </section>
+
+<style define:vars={{ mobileBg, desktopBg }}>
+  .responsive-bg {
+    background-image: var(--mobileBg);
+  }
+
+  @media (min-width: 768px) {
+    .responsive-bg {
+      background-image: var(--desktopBg);
+    }
+  }
+</style>
